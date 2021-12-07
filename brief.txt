@@ -1,0 +1,61 @@
+Candidate Coding Exercise
+Expectation is for the candidate to take approx 2-4 hrs (Software & Sr Software); 4-6 hrs (Sr. Software & Principal) to complete.
+
+Create a simple application with database access.
+ 
+Based on an input from the user provide the following functionality.
+ 
+Provide help
+    1. Add Person (id, firstName, lastName)
+    2. Edit Person (firstName, lastName)
+    3. Delete Person (id)
+    4. Add Address to person [multiple required] (id, street, city, state, postalCode)
+    5. Edit Address (street, city, state, postalCode)
+    6. Delete Address (id)
+    7. Count Number of Persons
+    8. List Persons
+ 
+Sr. Software Engineer Requirements
+    1. Unit Tests
+    2. Maven or Gradle build (Java); Visual Studio build (.NET); ng or npm build (Angular)
+    3. REST Backend
+
+ 
+Principal Software Engineer Requirements
+    1. Unit Tests
+    2. Maven or Gradle build (Java); Visual Studio build (.NET); ng or npm build (Angular)
+    3. REST Backend
+    4. Ability to Add Person from XML/JSON
+ 
+ 
+Please supply the source code and instructions on how to build and run your application.
+Please use a data store that does not require an installation (eg. SQL LocalDB, SQLite, etc.).
+Please upload your code into a public GitHub repository.
+Please spend no more than 4 hrs on this.
+ 
+Please make sure this is easily executable. Using a README.md, give details how to run (eg. use gradlew bootRun for Java or ng run for Angular).
+ 
+Show us what you know, use any third party frameworks that you think will help you complete the exercise while keeping it simple. Remember, this is your first impression with the tech leads and manager of the team. Impress them!
+
+
+Expectations:
+Software Engineer
+    • Clean, easy to read, formatted code
+    • Code works and meets the brief
+Sr. Software Engineer
+    • Demonstrates knowledge of design patterns, frameworks
+        ◦ Java: Hibernate, Spring, Maven, Gradle (however, given our current sample application shouldn’t be marked down for JDBC or Ant)
+        ◦ .NET: Entity Framework, ASP MVC, .NET Core
+        ◦ Angular: Control Framework (Material Design/PrimeNg)
+    • Good code separation
+    • Good introduction of Unit tests
+    • Introduction of validation and exception handling.
+Principal Software Engineer
+    • Expected use of design patterns, frameworks
+        ◦ Java: Hibernate, Spring, Maven, Gradle
+        ◦ .NET: Entity Framework, ASP MVC, .NET Core
+        ◦ Angular: State Management, REST API, Control Framework (Material Design/PrimeNg)
+    • Transactionality
+    • Excellent Unit test coverage; Mocking frameworks; separation of Unit and Integration tests
+    • Demonstrates "out of the box” thinking; e.g. Selection of an in-memory database rather than a file based database for tests.
+

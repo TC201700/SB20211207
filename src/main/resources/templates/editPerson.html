@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:text="(*{verb}?: 'Edit') + ' Person'"></title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+ 
+<body>
+    <div class="container">
+
+        <h3 th:text="(*{verb}?: 'Edit') + ' Person'"></h3>
+        
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+
+                    <form action="/person" th:action="@{/person}" th:object="${person}" method="post">
+							<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+								There are errors to be corrected
+							</div>
+							
+							<input type="hidden" name="id" th:field="*{id}" />
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">First Name</label> 
+                                <input type="text" autocomplete="off" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First Name" th:attrappend="class=${#fields.hasErrors('firstName') ? ' is-invalid' : ''}"/>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Error</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Last Name</label> 
+                                <input type="text" autocomplete="off" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last Name" th:attrappend="class=${#fields.hasErrors('lastName') ? ' is-invalid' : ''}" />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Error</div>
+                            </div>
+                            <div class="mb-3"> 
+                            	<button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+                            	<a href="#" th:href="@{/person}" class="btn btn-secondary" role="button">Cancel</a>
+                            </div>
+
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+ 
+</html>

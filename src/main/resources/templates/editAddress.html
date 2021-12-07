@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title th:text="(*{verb}?: 'Edit') + ' Address'"></title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+ 
+<body>
+    <div class="container">
+
+        <h3 th:text="(*{verb}?: 'Edit') + ' Address for ' + *{address.person}"></h3>
+        
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+
+                    <form action="/address" th:action="@{/address}" th:object="${address}" method="post">
+							<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+								There are errors to be corrected.
+							</div>
+							
+							<input type="hidden" name="person" th:field="*{person}" />
+							<input type="hidden" name="id" th:field="*{id}" />
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Street</label> 
+                                <input type="text" autocomplete="off" th:field="*{street}" class="form-control" id="street" placeholder="Street" th:attrappend="class=${#fields.hasErrors('street') ? ' is-invalid' : ''}"/>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Error</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">City</label> 
+                                <input type="text" autocomplete="off" th:field="*{city}" class="form-control" id="city" placeholder="City" th:attrappend="class=${#fields.hasErrors('city') ? ' is-invalid' : ''}" />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Error</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">State</label> 
+                                <input type="text" autocomplete="off" th:field="*{state}" class="form-control" id="state" placeholder="State" th:attrappend="class=${#fields.hasErrors('state') ? ' is-invalid' : ''}" />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">Error</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Postal Code</label> 
+                                <input type="text" autocomplete="off" th:field="*{postalCode}" class="form-control" id="postalCode" placeholder="Postal Code" th:attrappend="class=${#fields.hasErrors('postalCode') ? ' is-invalid' : ''}" />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}">Error</div>
+                            </div>
+                            
+ 							<div class="mb-3">
+	                            <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+    	                        <a href="#" th:href="@{/person/{id}(id=*{person.id})}" class="btn btn-danger" role="button">Cancel</a>
+                            </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+ 
+</html>

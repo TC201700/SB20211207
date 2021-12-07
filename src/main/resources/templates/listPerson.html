@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>All Persons</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+
+<body>
+	<div class="container">
+	
+		<h2>List People</h2>
+		
+		<div th:if="${message}" th:text="${message}" class="alert alert-primary" role="alert">Flash Message</div>
+		
+		<div class="card">
+			<div class="card-body">
+
+				<div th:switch="${persons}" class="container">
+					<div class="col-md-10">
+						<h2 th:case="null">No records found.</h2>
+						<div th:case="*">
+							<p><span th:text="${#lists.size(persons)}">2</span> records</p>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>
+											<!-- links -->
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="person : ${persons}">
+										<td th:text="${person.firstName}"></td>
+										<td th:text="${person.lastName}"></td>
+										<td>
+											<a th:href="@{/person/{id}(id=${person.id})}" class="btn btn-primary">View</a> 
+											<a th:href="@{/person/{id}/edit(id=${person.id})}" class="btn btn-primary">Edit</a> 
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<p>
+							<a href="/person/new" class="btn btn-primary">Add Person</a>
+						</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

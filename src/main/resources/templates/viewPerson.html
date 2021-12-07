@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Show Person</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+ 
+<body>
+    <div class="container">
+    	
+    	<h2><a href="/">Home</a> : View Person</h2>
+    	
+		<div th:if="${message}" th:text="${message}" class="alert alert-primary" role="alert">Flash Message</div>
+    	
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+
+			        
+			        
+			        <p>First Name: <strong th:text="${person.firstName}"></strong></p>
+					<p>Last Name: <strong th:text="${person.lastName}"></strong></p>
+					
+					<form th:action="@{/person/{id}/delete(id=${person.id})}" th:object="${person}" method="post">
+						<div class="mb-3"> 
+							<button type="submit" class="btn btn-danger" id="btnDelete">Delete Person</button>
+						</div>
+                    </form>
+
+					<div th:switch="${person.addresses}">
+						<div class="col-md-10">
+							<h2 th:case="null">No records found.</h2>
+							<div th:case="*">
+								<h2>Address List</h2>
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Street</th>
+											<th>City</th>
+											<th>State</th>
+											<th>Postal Code</th>
+
+											<th>
+												<!-- links -->
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="address : ${person.addresses}">
+											<td th:text="${address.street}"></td>
+											<td th:text="${address.city}"></td>
+											<td th:text="${address.state}"></td>
+											<td th:text="${address.postalCode}"></td>
+											<td>
+												<a th:href="@{/address/{id}/edit(id=${address.id})}" class="btn btn-primary">Edit</a> 
+												<form style="display: inline-block" th:action="@{/address/{id}/delete(id=${address.id})}" th:object="${address}" method="post">
+													<button type="submit" class="btn btn-danger">Delete</button>
+												</form>
+											</td>
+											
+										</tr>
+									</tbody>
+								</table>
+							</div>
+	
+							<p>
+								<a th:href="@{/person/{id}/address/new(id=${person.id})}" class="btn btn-primary">Add Address</a>
+							</p>
+	
+						</div>
+					
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+ 
+</html>
